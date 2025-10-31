@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Training Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Work Sans', sans-serif; background: #FFF3E4; display: flex; height: 100vh; overflow: hidden; }
+
+.sidebar { width: 280px; background: #FFF3E4; padding: 20px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid #ddd; }
+.logo { width: 68px; height: 68px; border-radius: 80px; background: rgba(255, 158, 44, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; cursor: pointer; }
+.search-left { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; background: white; font-size: 12px; outline: none; margin-bottom: 10px; }
+.nav-item { padding: 12px; border-radius: 7px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #081028; background: transparent; transition: 0.2s; }
+.nav-item:hover { background: #FFE2BF; }
+.nav-item.active { background: #FFE2BF; }
+.spacer { flex: 1; }
+.profile { display: flex; align-items: center; gap: 12px; padding: 12px; cursor: pointer; border-radius: 8px; }
+.profile:hover { background: #FFE2BF; }
+.profile-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #3b82f6); }
+.profile-info { flex: 1; }
+.profile-name { font-size: 14px; font-weight: 500; color: #081028; }
+.profile-role { font-size: 12px; color: #666; }
+
+.main { flex: 1; display: flex; flex-direction: column; }
+.header { background: #FFF3E4; padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; }
+.header-title { font-size: 20px; font-weight: 600; color: #081028; }
+.search-top { padding: 10px 12px 10px 40px; border: 1px solid #ddd; border-radius: 8px; background: #FFE2BF; font-size: 12px; width: 320px; outline: none; }
+
+.board { display: flex; gap: 20px; padding: 30px; overflow-x: auto; flex: 1; }
+.column { flex: 1; min-width: 350px; display: flex; flex-direction: column; gap: 15px; }
+.column-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 14px; font-weight: 600; color: #081028; }
+.badge { background: #666; color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px; }
+.add-card { background: #FFE2BF; border: 2px dashed #ddd; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; font-size: 32px; color: #999; transition: 0.2s; }
+.add-card:hover { background: #ffd9a8; border-color: #bbb; }
+
+.card { background: #FFE2BF; border: 1px solid #ddd; border-radius: 12px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.avatars { display: flex; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border: 2px solid white; margin-left: -8px; }
+.avatar:first-child { margin-left: 0; }
+.card-stats { display: flex; gap: 12px; font-size: 12px; color: #333; }
+.stat { display: flex; align-items: center; gap: 4px; }
+.card-title { font-size: 14px; font-weight: 600; color: #081028; margin-bottom: 8px; }
+.card-desc { font-size: 12px; color: #555; margin-bottom: 15px; line-height: 1.5; }
+.card-tasks { margin-bottom: 15px; }
+.task { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #081028; margin-bottom: 6px; }
+.checkbox { width: 16px; height: 16px; border: 2px solid #666; border-radius: 3px; }
+.card-footer { display: flex; justify-content: space-between; align-items: center; }
+.tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #E8F0FF; border-radius: 6px; font-size: 11px; font-weight: 500; }
+.more-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: #666; }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="logo" onclick="window.location.href='login.html'">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+            <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" fill="black"/>
+        </svg>
+    </div>
+    <input type="text" class="search-left" placeholder="Search for...">
+    <div class="nav-item" onclick="window.location.href='knowledge-hub.html'">🏠 Knowledge Dashboard</div>
+    <div class="nav-item active">📚 Training Guides</div>
+    <div class="nav-item">📄 Documents</div>
+    <div class="nav-item" onclick="window.location.href='chatbot.html'">💬 ChatBot</div>
+    <div class="nav-item">📁 Projects</div>
+    <div class="spacer"></div>
+    <div class="nav-item">👥 Users</div>
+    <div class="nav-item">💰 Pricing</div>
+    <div class="nav-item">🔌 Integrations</div>
+    <div class="nav-item">⚙️ Settings</div>
+    <div class="profile">
+        <div class="profile-avatar"></div>
+        <div class="profile-info">
+            <div class="profile-name">John Carter</div>
+            <div class="profile-role">Account settings</div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="header">
+        <h1 class="header-title">Training Guides</h1>
+        <input type="text" class="search-top" placeholder="Search for...">
+    </div>
+
+    <div class="board">
+        <div class="column">
+            <div class="column-header">
+                <span>To do</span>
+                <span class="badge">2</span>
+            </div>
+            <div class="add-card">+</div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="avatars">
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                        <div class="avatar"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">💬 2</span>
+                        <span class="stat">📎 4</span>
+                    </div>
+                </div>
+                <div class="card-title">Increasing patient capacity by 2027</div>
+                <div class="card-desc">Evaluating cost structures and timeline constraints for future expansion.</div>
+                <div class="card-tasks">
+                    <div class="task">
+                        <div class="checkbox" style="background: #d946ef;"></div>
+                        <span>About page</span>
+                    </div>
