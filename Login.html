@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login - Chatbot</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    background: #FFF3E4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.header-title {
+    color: #081028;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.logo-top {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 2px dashed #3b82f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cursor-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+
+.action-button {
+    width: 243px;
+    height: 80px;
+    background: #FFE2BF;
+    border: 0.6px solid rgba(52, 59, 79, 0);
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+.button-icon {
+    width: 35px;
+    height: 35px;
+}
+
+.button-text {
+    color: #081028;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.email-input {
+    width: 616px;
+    height: 60px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0 20px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: #4D4A4A;
+    text-align: center;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.email-input::placeholder {
+    color: #999;
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.email-input:focus {
+    border: 2px solid #FFE2BF;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-title">Login 1</div>
+</div>
+
+<div class="logo-top">
+    <svg class="cursor-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" fill="black"/>
+        <circle cx="8" cy="5" r="1" fill="black"/>
+        <circle cx="6" cy="7" r="1" fill="black"/>
+        <circle cx="10" cy="7" r="1" fill="black"/>
+        <circle cx="12" cy="9" r="1" fill="black"/>
+        <circle cx="8" cy="9" r="1" fill="black"/>
+        <circle cx="4" cy="9" r="1" fill="black"/>
+    </svg>
+</div>
+
+<div class="container">
+    <div class="button-group">
+        <button class="action-button" onclick="loginKnowledge()">
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" fill="black"/>
+                <circle cx="8" cy="5" r="1" fill="black"/>
+                <circle cx="6" cy="7" r="1" fill="black"/>
+                <circle cx="10" cy="7" r="1" fill="black"/>
+                <circle cx="12" cy="9" r="1" fill="black"/>
+                <circle cx="8" cy="9" r="1" fill="black"/>
+            </svg>
+            <span class="button-text">Login<br>Knowledge</span>
+        </button>
+
+        <button class="action-button" onclick="accessKnowledge()">
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" fill="black"/>
+            </svg>
+            <span class="button-text">Access<br>Knowledge</span>
+        </button>
+    </div>
+
+    <input 
+        type="email" 
+        class="email-input" 
+        placeholder="Enter your email id..."
+        id="emailInput"
+    >
+</div>
+
+<script>
+function loginKnowledge() {
+    const email = document.getElementById('emailInput').value;
+    if (email) {
+        window.location.href = 'knowledge-hub.html';
+    } else {
+        alert('Please enter your email address');
+    }
+}
+
+function accessKnowledge() {
+    const email = document.getElementById('emailInput').value;
+    if (email) {
+        window.location.href = 'training-guides.html';
+    } else {
+        alert('Please enter your email address');
+    }
+}
+
+document.getElementById('emailInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        loginKnowledge();
+    }
+});
+</script>
+
+</body>
+</html>
