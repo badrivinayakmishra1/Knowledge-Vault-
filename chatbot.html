@@ -7,7 +7,7 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Work Sans', sans-serif;
     background: linear-gradient(to bottom right, #fef3c7, #fed7aa);
     height: 100vh;
     overflow: hidden;
@@ -16,39 +16,175 @@ body {
     display: flex;
     height: 100vh;
 }
+
+/* SIDEBAR - MATCHING YOUR SCREENSHOT */
 .sidebar {
     width: 280px;
-    background: white;
-    padding: 20px;
+    background: #FFF3E4;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e5e7eb;
 }
+
 .logo {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(to bottom, #f97316, #dc2626);
-    border-radius: 12px;
-    margin-bottom: 20px;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(255, 158, 44, 0.2), rgba(255, 158, 44, 0.3));
+    border-radius: 50%;
+    margin-bottom: 30px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.logo svg {
+    width: 40px;
+    height: 40px;
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
 .search {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 12px 15px;
+    border: 2px solid #3b82f6;
+    border-radius: 12px;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
 }
+
+.search::placeholder {
+    color: #9ca3af;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+.sidebar-search {
+    padding-left: 40px;
+}
+
+.menu-section {
+    margin-bottom: 30px;
+}
+
 .menu-item {
+    padding: 14px 16px;
+    margin: 4px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-item:hover {
+    background: #f3f4f6;
+}
+
+.menu-item.active {
+    background: #fde68a;
+}
+
+.menu-item.has-arrow {
+    justify-content: space-between;
+}
+
+.menu-item .arrow {
+    color: #6b7280;
+    font-size: 18px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.profile-section {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.profile-item {
+    padding: 14px 16px;
+    margin: 4px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-item:hover {
+    background: #f3f4f6;
+}
+
+.profile-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     padding: 12px;
-    margin: 5px 0;
     cursor: pointer;
     border-radius: 8px;
     transition: background 0.2s;
 }
-.menu-item:hover {
-    background: #f5f5f5;
+
+.profile-user:hover {
+    background: #f3f4f6;
 }
-.menu-item.active {
-    background: #fde68a;
+
+.profile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
 }
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 2px;
+}
+
+.profile-role {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* MAIN CONTENT */
 .main {
     flex: 1;
     display: flex;
@@ -68,6 +204,7 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 500;
 }
 .btn:hover {
     background: #fcd34d;
@@ -154,9 +291,6 @@ body {
     padding: 8px 16px;
     border-radius: 8px;
 }
-.send:hover {
-    background: #333;
-}
 .chat-messages {
     max-height: 400px;
     overflow-y: auto;
@@ -172,7 +306,6 @@ body {
 .user-message {
     background: #fde68a;
     margin-left: auto;
-    text-align: right;
 }
 .bot-message {
     background: #f0f0f0;
@@ -206,18 +339,62 @@ body {
 <body>
 <div class="container">
     <div class="sidebar">
-        <div class="logo" onclick="goToPage('login.html')"></div>
-        <input type="text" class="search" placeholder="Search..." id="sidebarSearch" onkeyup="filterMenu()">
-        <div class="menu-item" onclick="goToPage('knowledge-hub.html')">🏠 Knowledge Dashboard</div>
-        <div class="menu-item" onclick="goToPage('training-guides.html')">📚 Training Guides</div>
-        <div class="menu-item">📄 Documents</div>
-        <div class="menu-item active">💬 ChatBot</div>
-        <div class="menu-item">📁 Projects</div>
-        <div class="menu-item">👥 Users</div>
-        <div class="menu-item">💰 Pricing</div>
-        <div class="menu-item">🔌 Integrations</div>
-        <div class="menu-item">⚙️ Settings</div>
+        <div class="logo" onclick="goToPage('index.html')">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z" fill="black"/>
+                <circle cx="8" cy="5" r="1.5" fill="black"/>
+                <circle cx="6" cy="7" r="1.5" fill="black"/>
+                <circle cx="10" cy="7" r="1.5" fill="black"/>
+                <circle cx="12" cy="9" r="1.5" fill="black"/>
+            </svg>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search sidebar-search" placeholder="Search for..." id="sidebarSearch" onkeyup="filterMenu()">
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item has-arrow" onclick="goToPage('knowledge-hub.html')">
+                <span>🏠 Knowledge Dashboard</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="menu-item" style="padding-left: 40px;">Training Guides</div>
+            <div class="menu-item" style="padding-left: 40px;">Documents</div>
+            <div class="menu-item active" style="padding-left: 40px;">ChatBot</div>
+            <div class="menu-item" style="padding-left: 40px;">Projects</div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="profile-section">
+            <div class="profile-item has-arrow">
+                <span>👥 Users</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="profile-item has-arrow">
+                <span>💰 Pricing</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="profile-item has-arrow">
+                <span>🔌 Integrations</span>
+                <span class="arrow">›</span>
+            </div>
+            <div class="profile-item has-arrow">
+                <span>⚙️ Settings</span>
+                <span class="arrow">›</span>
+            </div>
+
+            <div class="profile-user">
+                <div class="profile-avatar">JC</div>
+                <div class="profile-info">
+                    <div class="profile-name">John Carter</div>
+                    <div class="profile-role">Account settings</div>
+                </div>
+                <span class="arrow">›</span>
+            </div>
+        </div>
     </div>
+
     <div class="main">
         <div class="header">
             <h1>Chatbot</h1>
@@ -285,7 +462,6 @@ body {
     </div>
 </div>
 
-<!-- Modal -->
 <div id="taskModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -296,26 +472,22 @@ body {
 </div>
 
 <script>
-// Global variables
 let chatHistory = [];
 let currentTask = null;
 
-// Navigation
 function goToPage(page) {
     window.location.href = page;
 }
 
-// Menu filter
 function filterMenu() {
     const search = document.getElementById('sidebarSearch').value.toLowerCase();
     const items = document.querySelectorAll('.menu-item');
     items.forEach(item => {
         const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(search) ? 'block' : 'none';
+        item.style.display = text.includes(search) ? 'flex' : 'none';
     });
 }
 
-// New chat
 function newChat() {
     chatHistory = [];
     document.getElementById('chatMessages').innerHTML = '';
@@ -324,7 +496,6 @@ function newChat() {
     document.getElementById('messageInput').value = '';
 }
 
-// Task selection
 function selectTask(taskName) {
     currentTask = taskName;
     document.getElementById('modalTitle').textContent = taskName;
@@ -343,29 +514,20 @@ function startTask() {
     addMessage(`Let's work on ${currentTask}. What would you like to do?`, 'bot');
 }
 
-// Send message
 function sendMessage() {
     const input = document.getElementById('messageInput');
     const message = input.value.trim();
-    
     if (message === '') return;
-    
-    // Hide welcome if first message
     document.getElementById('welcomeContent').style.display = 'none';
     document.getElementById('chatMessages').style.display = 'block';
-    
-    // Add user message
     addMessage(message, 'user');
     input.value = '';
-    
-    // Simulate bot response
     setTimeout(() => {
         const botResponse = generateBotResponse(message);
         addMessage(botResponse, 'bot');
     }, 1000);
 }
 
-// Add message to chat
 function addMessage(text, sender) {
     const chatMessages = document.getElementById('chatMessages');
     const messageDiv = document.createElement('div');
@@ -373,30 +535,24 @@ function addMessage(text, sender) {
     messageDiv.textContent = text;
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    
-    // Save to history
     chatHistory.push({ text, sender, timestamp: new Date() });
 }
 
-// Generate bot response (simulated)
 function generateBotResponse(userMessage) {
     const responses = {
         'hello': 'Hi there! How can I assist you today?',
         'help': 'I can help you with projects, research, articles, data analysis, and more!',
         'thank': 'You\'re welcome! Let me know if you need anything else.',
     };
-    
     const lowerMessage = userMessage.toLowerCase();
     for (let key in responses) {
         if (lowerMessage.includes(key)) {
             return responses[key];
         }
     }
-    
     return `I understand you said: "${userMessage}". How can I help you with that?`;
 }
 
-// Additional features
 function attachFile() {
     alert('File attachment feature - To be implemented');
 }
@@ -411,7 +567,6 @@ function insertEmoji() {
     input.focus();
 }
 
-// Enter key to send
 document.getElementById('messageInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
@@ -419,7 +574,6 @@ document.getElementById('messageInput').addEventListener('keypress', function(e)
     }
 });
 
-// Load user name from localStorage
 window.onload = function() {
     const email = localStorage.getItem('userEmail');
     if (email) {
