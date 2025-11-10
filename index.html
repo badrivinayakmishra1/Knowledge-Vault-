@@ -1,354 +1,793 @@
-<!doctype html>
+<artifact identifier="knowledge-vault-landing" type="text/html" title="Knowledge Vault - Professional Landing Page">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Knowledge Vault — AI Knowledge Platform</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Vault — AI Knowledge Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6B7DAD;
+            --accent: #FFE2BF;
+            --bg: #FFF3E4;
+            --text: #1a1a2e;
+            --muted: #4a4a5e;
+            --glass: rgba(255,255,255,0.85);
+        }
 
-<!-- favicon: uses the cosmo first logo file you uploaded (space URL-encoded) -->
-<link rel="icon" href="/image/cosmo%20first%20logo.png" type="image/png">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --blue: #6B7DAD;
-    --accent: #FFE2BF;
-    --bg: #FFF3E4;
-    --text: #1a1a2e;
-    --muted: #4a4a5e;
-    --glass: rgba(255,255,255,0.78);
-    --radius-lg: 24px;
-    --radius-pill: 50px;
-  }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-  /* Reset */
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-    background:var(--bg);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
+        /* Animated Background */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
-  .container{max-width:1200px;margin:0 auto;padding:0 28px}
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
 
-  /* Header */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:1200;
-    background:linear-gradient(180deg, rgba(255,243,228,0.96), rgba(255,243,228,0.92));
-    border-bottom:1px solid rgba(107,125,173,0.06);
-    backdrop-filter: blur(8px);
-  }
-  nav.container{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-  .logo-area{display:flex;align-items:center;gap:12px}
-  .logo-badge{
-    width:56px;height:56px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--accent),var(--blue));
-    box-shadow:0 8px 26px rgba(107,125,173,0.18);overflow:hidden;flex-shrink:0;transition:transform .25s;
-  }
-  .logo-badge img{width:78%;height:78%;object-fit:contain;display:block}
-  .logo-badge:hover{transform:scale(1.06)}
-  .brand{font-weight:900;font-size:18px;color:var(--text);line-height:1}
-  .brand small{display:block;font-size:12px;color:var(--muted);font-weight:600}
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
 
-  .nav-links{display:flex;gap:22px;align-items:center}
-  .nav-links a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px;border-radius:8px}
-  .nav-links a:hover{color:var(--blue);transform:translateY(-2px)}
-  .cta{padding:10px 20px;border-radius:40px;background:linear-gradient(135deg,var(--blue),#8a9ec9);color:var(--bg);font-weight:800;text-decoration:none;box-shadow:0 12px 36px rgba(107,125,173,0.22)}
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
 
-  .hamburger{display:none;width:44px;height:44px;border-radius:12px;background:transparent;border:none;cursor:pointer}
-  .hamburger span{display:block;width:20px;height:2px;background:var(--text);position:relative}
-  .hamburger span::before,.hamburger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--text)}
-  .hamburger span::before{top:-6px} .hamburger span::after{top:6px}
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
 
-  /* Hero with improved background */
-  .hero{
-    position:relative;min-height:90vh;display:flex;align-items:center;padding-top:120px;padding-bottom:60px;overflow:hidden;
-  }
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            background: var(--accent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
 
-  /* Hero background wrapper (image loaded by JS with graceful fallback) */
-  .hero-bg{
-    position:absolute;inset:0;z-index:0;background-position:center;background-size:cover;background-repeat:no-repeat;
-    transform-origin:center center;will-change:transform,opacity;
-    transition:transform 0.6s ease,opacity 0.6s ease;
-  }
-  /* dark gradient overlay for legibility */
-  .hero-overlay{
-    position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(26,26,46,0.04), rgba(26,26,46,0.12));
-    pointer-events:none;
-  }
-  /* soft tinted layer matching brand colors */
-  .hero-tint{
-    position:absolute;inset:0;z-index:2;mix-blend-mode:screen;opacity:0.36;background:linear-gradient(135deg, rgba(107,125,173,0.35), rgba(255,226,191,0.32));
-    pointer-events:none;
-    filter: blur(14px);
-  }
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 20%;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
 
-  /* A subtle, low-contrast particle overlay */
-  .particle-canvas{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0.9}
+        .shape:nth-child(4) {
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 30%;
+            right: 25%;
+            animation-delay: 1s;
+        }
 
-  .hero-inner{position:relative;z-index:6;max-width:980px}
-  .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,0.78);color:var(--blue);font-weight:800;margin-bottom:20px;border:1px solid rgba(107,125,173,0.08);backdrop-filter:blur(4px)}
-  .hero h1{font-size:56px;line-height:1.02;font-weight:900;margin-bottom:12px;color:var(--text)}
-  .gradient-text{display:block;background:linear-gradient(135deg,var(--blue),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:6px}
-  .sub{color:var(--muted);font-size:18px;max-width:720px;margin-bottom:20px;font-weight:500}
+        .shape:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            bottom: 30%;
+            right: 40%;
+            animation-delay: 3s;
+        }
 
-  .pills{display:flex;gap:14px;margin-bottom:26px;flex-wrap:wrap}
-  .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--glass);border:1px solid rgba(107,125,173,0.08);font-weight:700;color:var(--text)}
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(-50px) translateX(-20px) rotate(180deg);
+            }
+            75% {
+                transform: translateY(-30px) translateX(20px) rotate(270deg);
+            }
+        }
 
-  .cta-row{display:flex;gap:14px;align-items:center;margin-bottom:36px}
-  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
-  .metric{background:rgba(255,255,255,0.82);padding:22px;border-radius:14px;text-align:center;border:1px solid rgba(107,125,173,0.06)}
-  .metric .value{font-size:40px;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .metric .label{color:var(--muted);font-weight:700;margin-top:8px}
+        /* Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
 
-  /* responsive */
-  @media (max-width:1000px){ .nav-links{display:none} .hamburger{display:block} .hero h1{font-size:44px} .metrics{grid-template-columns:1fr} }
-  @media (max-width:480px){ .hero h1{font-size:30px} .brand{font-size:16px} .hero{padding-top:96px} }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: rise 15s infinite linear;
+            opacity: 0;
+        }
 
-  /* small helpers */
-  a:focus{outline:3px solid rgba(107,125,173,0.14);outline-offset:3px;border-radius:8px}
-  .visually-hidden{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-</style>
+        @keyframes rise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(0.5);
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 243, 228, 0.95);
+            border-bottom: 1px solid rgba(107, 125, 173, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(107, 125, 173, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), #8a9ec9);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(107, 125, 173, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 125, 173, 0.4);
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFE2BF, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-pills {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .pill {
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .metric {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(107, 125, 173, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .metric:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--bg);
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(107, 125, 173, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* Clients Section */
+        .clients {
+            padding: 6rem 2rem;
+            background: var(--bg);
+            text-align: center;
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .client-logo {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .client-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav class="container" aria-label="Main navigation">
-      <div style="display:flex;align-items:center;gap:14px">
-        <div class="logo-area" role="img" aria-label="Knowledge Vault logo">
-          <div class="logo-badge" title="Knowledge Vault">
-            <!-- uses logo file from images folder -->
-            <img src="image/logo.png" alt="Knowledge Vault logo">
-          </div>
-          <div>
-            <div class="brand">Knowledge Vault</div>
-            <small>Scale onboarding with AI</small>
-          </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <span>Knowledge Vault</span>
+            </div>
+            <div class="nav-links">
+                <a href="#platform">Platform</a>
+                <a href="#features">Features</a>
+                <a href="#clients">Clients</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="cta-btn">Get Started</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="platform">
+        <div class="animated-bg">
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <div class="particles" id="particles"></div>
         </div>
 
-        <div class="nav-links" role="menubar" aria-hidden="false">
-          <a href="#platform" role="menuitem">Platform</a>
-          <a href="#features" role="menuitem">Features</a>
-          <a href="#demo" role="menuitem">Demo</a>
-          <a href="#contact" role="menuitem">Contact</a>
-        </div>
-      </div>
-
-      <div style="display:flex;align-items:center;gap:12px">
-        <a class="cta" href="#demo">Request demo</a>
-        <button class="hamburger" id="hambtn" aria-label="Open menu"><span></span></button>
-      </div>
-    </nav>
-
-    <div id="mobileNav" style="display:none;position:fixed;right:18px;top:84px;background:rgba(255,255,255,0.98);padding:12px;border-radius:12px;box-shadow:0 20px 50px rgba(26,26,46,0.06);z-index:1300;">
-      <a href="#platform" style="display:block;padding:8px 12px;font-weight:800;color:var(--text);text-decoration:none">Platform</a>
-      <a href="#features" style="display:block;padding:8px 12px;font-weight:800;color:var(--text);text-decoration:none">Features</a>
-      <a href="#demo" style="display:block;padding:8px 12px;font-weight:800;color:var(--text);text-decoration:none">Demo</a>
-      <a href="#contact" style="display:block;padding:8px 12px;font-weight:800;color:var(--text);text-decoration:none">Contact</a>
-    </div>
-  </header>
-
-  <main>
-    <section id="platform" class="hero" aria-labelledby="heroTitle">
-      <!-- hero background: set via JS from available background files in /images/ -->
-      <div id="heroBg" class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-overlay" aria-hidden="true"></div>
-      <div class="hero-tint" aria-hidden="true"></div>
-
-      <!-- particle overlay canvas (subtle) -->
-      <canvas id="particles" class="particle-canvas"></canvas>
-
-      <div class="container hero-inner">
-        <div class="tag">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M13 10V3L4 14h7v7l9-11h-7z" fill="var(--blue)"/></svg>
-          Capturing institutional knowledge before it walks out the door
+        <div class="hero-content">
+            <div class="badge">
+                ⚡ Capturing institutional knowledge before it walks out the door
+            </div>
+            
+            <h1>
+                Transform Knowledge Transfer
+                <div class="gradient-text">Scale With AI Intelligence</div>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Cut onboarding time by 50% with our 6-layer AI system that intelligently ingests, filters, and delivers institutional knowledge from 10+ sources—with enterprise-grade privacy.
+            </p>
+            
+            <div class="hero-pills">
+                <span class="pill">10+ Data Sources</span>
+                <span class="pill">6-Layer AI Architecture</span>
+                <span class="pill">Enterprise Security</span>
+            </div>
+            
+            <div class="hero-actions">
+                <button class="cta-btn" style="padding: 1rem 2rem; font-size: 1.1rem;">Start Your Pilot</button>
+                <button class="cta-btn" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">Watch Demo →</button>
+            </div>
         </div>
 
-        <h1 id="heroTitle">
-          Transform Employee Onboarding
-          <span class="gradient-text">Scale With AI Knowledge</span>
-        </h1>
-
-        <p class="sub">Cut onboarding time by 50% with our 6-layer AI system that intelligently ingests, filters, and delivers institutional knowledge from 10+ sources—with enterprise-grade privacy.</p>
-
-        <div class="pills">
-          <div class="pill">10+ Data Sources</div>
-          <div class="pill">6-Layer AI Architecture</div>
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value" data-target="75">0%</div>
+                <div class="metric-label">Reduction in Search Time</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" data-target="50">0%</div>
+                <div class="metric-label">Faster Onboarding</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" data-target="73">0%</div>
+                <div class="metric-label">Fewer Irrelevant Results</div>
+            </div>
         </div>
-
-        <div class="cta-row">
-          <a class="cta" href="#demo">Start your pilot</a>
-          <a href="#features" style="font-weight:800;color:var(--blue);text-decoration:none">See how it works →</a>
-        </div>
-
-        <div class="metrics" aria-hidden="false">
-          <div class="metric"><div class="value" data-target="75">0%</div><div class="label">Reduction in Search Time</div></div>
-          <div class="metric"><div class="value" data-target="50">0%</div><div class="label">Faster Onboarding</div></div>
-          <div class="metric"><div class="value" data-target="73">0%</div><div class="label">Fewer Irrelevant Results</div></div>
-        </div>
-      </div>
     </section>
 
-    <!-- placeholder Features & Demo sections (carry over your content) -->
-    <section id="features" style="padding:70px 0">
-      <div class="container">
-        <h2 style="font-size:28px;font-weight:900;margin-bottom:12px">The 6-Layer AI Architecture</h2>
-        <p style="color:var(--muted);margin-bottom:18px">A sophisticated system that transforms scattered company knowledge into intelligent, accessible insights.</p>
-      </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>The 6-Layer AI Architecture</h2>
+            <p>A sophisticated system that transforms scattered company knowledge into intelligent, accessible insights.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Intelligent Ingestion</h3>
+                <p>Automatically connects to 10+ data sources including Slack, Google Drive, Confluence, and more to capture institutional knowledge.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Smart Filtering</h3>
+                <p>AI-powered relevance scoring ensures only the most pertinent information surfaces, reducing noise by 73%.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Context Understanding</h3>
+                <p>Deep learning models understand context and relationships between documents for better knowledge discovery.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise Security</h3>
+                <p>Bank-grade encryption and compliance with GDPR, SOC 2, and ISO 27001 standards.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Real-time Updates</h3>
+                <p>Knowledge base stays current with automatic syncing and version control across all sources.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics Dashboard</h3>
+                <p>Track knowledge gaps, usage patterns, and ROI with comprehensive analytics and reporting.</p>
+            </div>
+        </div>
     </section>
 
-    <section id="demo" style="padding:60px 0;background:transparent">
-      <div class="container">
-        <h3 style="font-size:22px;font-weight:900;margin-bottom:8px">Live Demo</h3>
-        <p style="color:var(--muted);margin-bottom:18px">Interactive demo canvas and visualizations can be added here.</p>
-      </div>
+    <!-- Clients Section -->
+    <section class="clients" id="clients">
+        <div class="section-header">
+            <h2>Trusted by Leading Organizations</h2>
+            <p>Join innovative companies transforming their knowledge management</p>
+        </div>
+
+        <div class="client-logos">
+            <div class="client-logo">Cosmo First</div>
+            <div class="client-logo">Ziggly</div>
+            <div class="client-logo">Socio Rich</div>
+            <div class="client-logo">RESO</div>
+            <div class="client-logo">EV Bazaar</div>
+        </div>
     </section>
 
-  </main>
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Transform Your Knowledge Transfer?</h2>
+        <p>Start your free pilot program today. No credit card required.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+            <button class="cta-btn" style="padding: 1rem 2.5rem; font-size: 1.1rem; background: white; color: var(--primary);">Schedule Demo</button>
+            <button class="cta-btn" style="padding: 1rem 2.5rem; font-size: 1.1rem; background: rgba(255,255,255,0.2);">Contact Sales</button>
+        </div>
+    </section>
 
-<script>
-/* ---------------------------
-  Mobile nav behavior
---------------------------- */
-const hambtn = document.getElementById('hambtn');
-const mobileNav = document.getElementById('mobileNav');
-hambtn && hambtn.addEventListener('click', () => {
-  mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
-});
-document.addEventListener('click', (e) => {
-  if (mobileNav.style.display === 'block' && !mobileNav.contains(e.target) && !hambtn.contains(e.target)) {
-    mobileNav.style.display = 'none';
-  }
-});
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#security">Security</a>
+                <a href="#integrations">Integrations</a>
+            </div>
 
-/* ---------------------------
-  Load best available hero background from /images/
-  Tries a list of candidate filenames and uses the first that loads.
-  Replace or rename your background image if necessary.
---------------------------- */
-(function loadHeroBg(){
-  const bg = document.getElementById('heroBg');
-  const candidates = [
-    '/images/hero-bg.jpg',
-    '/images/hero-bg.png',
-    '/images/background.jpg',
-    '/images/background.png',
-    '/images/bg-hero.jpg',
-    '/images/bg-hero.png'
-  ];
-  let chosen = null;
-  function tryNext(i){
-    if(i >= candidates.length){ applyFallback(); return; }
-    const img = new Image();
-    img.src = candidates[i];
-    img.onload = () => {
-      chosen = candidates[i];
-      bg.style.backgroundImage = `url('${chosen}')`;
-      bg.style.opacity = '1';
-      // small parallax transform init
-      bg.style.transform = 'translateZ(0) scale(1.03)';
-    };
-    img.onerror = () => { tryNext(i+1) };
-  }
-  function applyFallback(){
-    // fallback gradient if no background image is present
-    bg.style.backgroundImage = `linear-gradient(135deg, rgba(107,125,173,0.12), rgba(255,226,191,0.10))`;
-    bg.style.opacity = '1';
-    bg.style.filter = 'blur(0.2px)';
-  }
-  tryNext(0);
-})();
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#about">About</a>
+                <a href="#careers">Careers</a>
+                <a href="#blog">Blog</a>
+                <a href="#press">Press</a>
+            </div>
 
-/* ---------------------------
-  Subtle particle overlay (lightweight)
---------------------------- */
-(function particles(){
-  const canvas = document.getElementById('particles');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w = canvas.width = window.innerWidth;
-  let h = canvas.height = window.innerHeight;
-  const PS = Math.max(40, Math.floor(w / 36)); // particle count
-  const particles = [];
-  for(let i=0;i<PS;i++){
-    particles.push({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      r: Math.random()*1.8 + 0.6,
-      vx: (Math.random()-0.5)*0.4,
-      vy: (Math.random()-0.5)*0.4,
-      c: Math.random()>0.6 ? getComputedStyle(document.documentElement).getPropertyValue('--blue').trim() : getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()
-    });
-  }
-  window.addEventListener('resize', ()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; });
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#docs">Documentation</a>
+                <a href="#support">Support</a>
+                <a href="#api">API</a>
+                <a href="#status">Status</a>
+            </div>
 
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    for(let p of particles){
-      p.x += p.vx; p.y += p.vy;
-      if(p.x < -10) p.x = w + 10;
-      if(p.x > w + 10) p.x = -10;
-      if(p.y < -10) p.y = h + 10;
-      if(p.y > h + 10) p.y = -10;
-      ctx.beginPath();
-      ctx.globalAlpha = 0.9;
-      ctx.fillStyle = p.c;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
-      ctx.globalAlpha = 0.1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r*4, 0, Math.PI*2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#gdpr">GDPR</a>
+                <a href="#compliance">Compliance</a>
+            </div>
+        </div>
 
-/* ---------------------------
-  Lightweight parallax on scroll for hero background
---------------------------- */
-(function parallax(){
-  const bg = document.getElementById('heroBg');
-  if(!bg) return;
-  const hero = document.querySelector('.hero');
-  window.addEventListener('scroll', () => {
-    const rect = hero.getBoundingClientRect();
-    const offset = Math.max(-rect.top, 0);
-    const move = Math.min(offset * 0.12, 160);
-    // translate background subtly downwards with scale
-    bg.style.transform = `translateY(${move}px) scale(${1 + Math.min(offset/4000, 0.04)})`;
-  }, {passive:true});
-})();
+        <div class="footer-bottom">
+            <p>&copy; 2025 Knowledge Vault. All rights reserved.</p>
+        </div>
+    </footer>
 
-/* ---------------------------
-  Metric counters when visible
---------------------------- */
-(function counters(){
-  const counters = document.querySelectorAll('.value');
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => {
-      if(en.isIntersecting){
-        const el = en.target;
-        const target = parseInt(el.dataset.target || '0', 10);
-        let cur = 0; const step = Math.max(1, Math.floor(target/30));
-        const t = setInterval(()=> {
-          cur += step; el.textContent = cur + '%';
-          if(cur >= target){ el.textContent = target + '%'; clearInterval(t); }
-        }, 28);
-        obs.unobserve(el);
-      }
-    });
-  }, {threshold:0.4});
-  counters.forEach(c => io.observe(c));
-})();
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
 
-/* Accessibility helper (close mobile nav on outside click) already handled above */
-</script>
+        // Animate counters
+        const animateCounter = (el) => {
+            const target = parseInt(el.dataset.target);
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    el.textContent = target + '%';
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(current) + '%';
+                }
+            }, 16);
+        };
+
+        // Intersection Observer for counters
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.metric-value').forEach(el => observer.observe(el));
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+</artifact>
